@@ -1,442 +1,883 @@
-/* Variables CSS (Opcional, pero buena práctica para colores y fuentes) */
-:root {
-    --primary-color: #3498db; /* Azul */
-    --secondary-color: #2ecc71; /* Verde */
-    --dark-color: #2c3e50; /* Gris oscuro */
-    --light-color: #ecf0f1; /* Gris claro */
-    --white-color: #ffffff;
-    --text-color: #333;
-    --font-family: Arial, sans-serif;
+/*
+ * Archivo: assets/css/styles.css
+ * Descripción: Estilos completos para la Galería de Arte Stevs usando metodología BEM.
+ * Paleta: Blanco (#ffffff, #f8f8f8), Negro (#1a1a1a, #222, #333, #444), Dorado (#ffd700).
+ * Estética: Pureza, Lujo, Pulcritud, Bordes Redondeados.
+ */
+
+/* ------------------------------------ */
+/* 1. Estilos Globales y Reset        */
+/* ------------------------------------ */
+
+/* Reset básico para asegurar consistencia entre navegadores */
+*, *::before, *::after {
+    box-sizing: border-box; /* Asegura que padding y border se incluyan en el ancho/alto */
+    margin: 0;             /* Elimina márgenes predeterminados */
+    padding: 0;            /* Elimina rellenos predeterminados */
 }
 
-/* Estilos Generales y Resets Básicos (fuera de BEM, aplican a todo el documento) */
+/* Estilos para el cuerpo de la página */
 body {
-    font-family: var(--font-family);
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
-    color: var(--text-color);
-    background-color: var(--light-color);
+    font-family: 'Roboto', sans-serif; /* Fuente más moderna, puedes cambiarla. Importar desde Google Fonts. */
+    line-height: 1.6;                 /* Altura de línea para mejor legibilidad */
+    color: #333;                      /* Color de texto principal */
+    background-color: #f8f8f8;        /* Color de fondo suave para la página */
+    overflow-x: hidden;               /* Evita el scroll horizontal no deseado */
+    scroll-behavior: smooth;          /* Desplazamiento suave al hacer clic en enlaces internos */
 }
 
-.container { /* Un bloque utility para centrar contenido, si lo usas */
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px;
+/* Importar fuente de Google Fonts (ej. Roboto). Puedes cambiarla. */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+
+/* Estilos para enlaces */
+a {
+    text-decoration: none; /* Quita el subrayado de los enlaces por defecto */
+    color: inherit;        /* Hereda el color del texto de su padre */
 }
 
-/* ==================================== */
-/* BLOQUE: HEADER */
-/* ==================================== */
+/* Estilos para títulos generales (si no son parte de un bloque específico) */
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 0.5em;
+    font-weight: 700; /* Negrita */
+    color: #222; /* Un color un poco más oscuro para los títulos */
+}
+
+/* Contenedor central (para centrar contenido principal de manera consistente) */
+.container {
+    max-width: 1200px; /* Ancho máximo del contenido */
+    margin: 0 auto;    /* Centra el contenedor */
+    padding: 0 20px;   /* Relleno lateral para que el contenido no toque los bordes */
+}
+
+/* ------------------------------------ */
+/* 2. Bloque: Header                  */
+/* ------------------------------------ */
+
 .header {
-    background-color: var(--dark-color);
-    color: var(--white-color);
-    padding: 1rem 0;
-    display: flex;
-    flex-direction: column; /* Para apilar logo y nav en móvil */
-    align-items: center;
+    background-color: #1a1a1a; /* Fondo oscuro para el header */
+    color: #fff;               /* Texto blanco en el header */
+    padding: 15px 0;           /* Relleno superior e inferior */
+    display: flex;             /* Usa flexbox para alinear elementos */
+    justify-content: space-between; /* Espacio entre logo y navegación */
+    align-items: center;       /* Centra verticalmente los elementos */
+    flex-wrap: wrap;           /* Permite que los elementos se envuelvan en pantallas pequeñas */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3); /* Sombra sutil y más marcada */
+    position: sticky;          /* Header pegajoso al hacer scroll */
+    top: 0;                    /* Se pega a la parte superior */
+    z-index: 1000;             /* Asegura que esté por encima de otros elementos */
 }
 
 .header__logo-container {
-    margin-bottom: 1rem; /* Espacio entre logo y nav */
+    padding-left: 20px; /* Relleno lateral para el logo */
 }
 
 .header__logo {
-    max-width: 150px;
-    height: auto;
+    height: 60px; /* Altura del logo */
+    width: auto;  /* Ancho automático para mantener la proporción */
+    display: block; /* Asegura que la imagen sea un bloque para evitar espacios extra */
 }
 
 .header__nav {
-    width: 100%; /* La navegación ocupa todo el ancho disponible */
+    padding-right: 20px; /* Relleno lateral para la navegación */
 }
 
-/* ==================================== */
-/* BLOQUE: NAV (Usado dentro de header) */
-/* ==================================== */
 .nav__list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-wrap: wrap; /* Permite que los ítems se envuelvan */
-    justify-content: center;
-    gap: 1.5rem; /* Espacio entre ítems de navegación */
+    list-style: none; /* Quita los puntos de la lista */
+    display: flex;    /* Usa flexbox para los ítems del menú */
+    gap: 30px;        /* Espacio entre los ítems del menú */
 }
 
 .nav__item {
-    /* Estilos base para un ítem de navegación */
+    /* No se necesitan estilos directos aquí a menos que haya un modificador */
 }
 
 .nav__link {
-    color: var(--white-color);
-    text-decoration: none;
-    font-weight: bold;
-    padding: 0.5rem 1rem;
-    transition: color 0.3s ease;
+    color: #fff;               /* Color de los enlaces del menú */
+    font-weight: 700;          /* Texto en negrita */
+    padding: 10px 0;           /* Relleno para hacer la zona de clic más grande */
+    transition: color 0.3s ease; /* Transición suave para el hover */
+    position: relative;        /* Para el efecto de subrayado al pasar el ratón */
 }
 
 .nav__link:hover {
-    color: var(--primary-color); /* Color al pasar el ratón */
+    color: #ffd700; /* Color dorado al pasar el ratón (similar a oro) */
 }
 
-/* Modificador para el ítem de navegación actual */
+/* Estilo para el ítem de navegación actual */
 .nav__item--current .nav__link {
-    color: var(--primary-color);
-    border-bottom: 2px solid var(--primary-color);
+    color: #ffd700; /* Color dorado para el enlace de la página actual */
 }
 
-/* ==================================== */
-/* BLOQUE: MAIN-CONTENT */
-/* ==================================== */
-.main-content {
-    padding: 2rem 0;
-    max-width: 1000px;
-    margin: 2rem auto; /* Centra el contenido principal */
+/* Efecto de subrayado animado para los enlaces */
+.nav__link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 3px; /* Grosor un poco mayor */
+    background-color: #ffd700; /* Color del subrayado */
+    border-radius: 2px; /* Bordes redondeados para el subrayado */
+    transition: width 0.3s ease-out;
 }
 
-/* ==================================== */
-/* BLOQUE: ARTICLE */
-/* ==================================== */
+.nav__link:hover::after,
+.nav__item--current .nav__link::after {
+    width: 100%; /* El subrayado se expande al 100% al pasar el ratón o si es la página actual */
+}
+
+
+/* --- Media Queries (Responsividad básica para el Header) --- */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column; /* Apila logo y nav en pantallas pequeñas */
+        align-items: center;    /* Centra los elementos */
+        text-align: center;
+        padding: 15px 0 0 0; /* Ajusta relleno */
+    }
+
+    .header__logo-container {
+        margin-bottom: 15px; /* Espacio debajo del logo */
+        padding-left: 0;
+    }
+
+    .header__nav {
+        width: 100%; /* La navegación ocupa todo el ancho */
+        padding-right: 0;
+        margin-top: 10px; /* Pequeño espacio para separar del logo */
+    }
+
+    .nav__list {
+        flex-direction: column; /* Los ítems del menú se apilan */
+        gap: 0;              /* Elimina el espacio entre ítems apilados */
+    }
+
+    .nav__item {
+        width: 100%; /* Cada ítem ocupa todo el ancho */
+        border-top: 1px solid rgba(255,255,255,0.1); /* Separador sutil */
+    }
+    .nav__item:last-child {
+        border-bottom: 1px solid rgba(255,255,255,0.1); /* Separador también abajo del último */
+    }
+
+    .nav__link {
+        display: block;   /* Hace que los enlaces ocupen todo el ancho del ítem */
+        padding: 15px 0; /* Relleno para facilitar el clic */
+        background-color: #2a2a2a; /* Fondo más oscuro para cada ítem de menú */
+    }
+    .nav__link:hover {
+        background-color: #3a3a3a; /* Cambio de color al pasar el ratón */
+    }
+
+    .nav__link::after {
+        display: none; /* Oculta el subrayado animado en móvil si prefieres un diseño más limpio */
+    }
+}
+
+
+/* ------------------------------------ */
+/* 3. Bloque: Hero Obra               */
+/* ------------------------------------ */
+
+.hero-obra {
+    position: relative;
+    width: 100%;
+    height: 600px; /* Altura de la sección de héroe */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Asegura que la imagen de fondo no se desborde */
+    text-align: center;
+    color: #fff; /* Texto blanco sobre la imagen */
+}
+
+.hero-obra__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cubre todo el espacio manteniendo la proporción */
+    z-index: 1; /* Detrás del overlay y el contenido */
+}
+
+.hero-obra__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Overlay semitransparente un poco más oscuro */
+    z-index: 2; /* Encima de la imagen */
+}
+
+.hero-obra__content {
+    position: relative;
+    z-index: 3; /* Encima del overlay */
+    padding: 20px;
+    max-width: 800px;
+}
+
+.hero-obra__title {
+    font-size: 4em; /* Título grande para impacto */
+    margin-bottom: 15px;
+    color: #fff;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.7); /* Sombra para resaltar */
+}
+
+.hero-obra__artist {
+    font-size: 1.8em;
+    color: #ffd700; /* Dorado para el nombre del artista */
+    margin-bottom: 40px;
+    font-style: italic;
+    font-weight: 300;
+}
+
+.hero-obra__button {
+    display: inline-block;
+    background-color: #ffd700; /* Botón dorado */
+    color: #1a1a1a;             /* Texto negro sobre el botón dorado */
+    padding: 18px 40px;
+    border-radius: 10px;         /* Bordes redondeados más pronunciados */
+    font-size: 1.2em;
+    font-weight: 700;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* Sombra para el botón */
+}
+
+.hero-obra__button:hover {
+    background-color: #e6c200; /* Dorado un poco más oscuro al pasar el ratón */
+    transform: translateY(-3px); /* Pequeño efecto de elevación */
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3); /* Sombra más pronunciada al hover */
+}
+
+/* --- Media Queries para Hero Obra --- */
+@media (max-width: 768px) {
+    .hero-obra {
+        height: 450px;
+    }
+    .hero-obra__title {
+        font-size: 3em;
+    }
+    .hero-obra__artist {
+        font-size: 1.5em;
+    }
+    .hero-obra__button {
+        padding: 15px 30px;
+        font-size: 1.1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-obra {
+        height: 350px;
+    }
+    .hero-obra__title {
+        font-size: 2em;
+    }
+    .hero-obra__artist {
+        font-size: 1.2em;
+    }
+    .hero-obra__button {
+        padding: 12px 25px;
+        font-size: 1em;
+    }
+}
+
+
+/* ------------------------------------ */
+/* 4. Bloque: Article                 */
+/* ------------------------------------ */
+
 .article {
-    background-color: var(--white-color);
-    padding: 2rem;
-    margin-bottom: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    max-width: 900px; /* Ancho máximo para el contenido del artículo */
+    margin: 60px auto; /* Centra el artículo y añade espacio arriba/abajo */
+    padding: 50px;     /* Relleno interno */
+    background-color: #ffffff; /* Fondo blanco puro */
+    border-radius: 15px;       /* Bordes redondeados pronunciados */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1); /* Sombra más suave y extendida para darle "elevación" */
+    line-height: 1.9; /* Mayor altura de línea para legibilidad en el artículo */
 }
 
 .article__title {
-    color: var(--primary-color);
-    font-size: 2.2rem;
-    margin-bottom: 1rem;
+    font-size: 2.8em;
+    color: #1a1a1a; /* Negro para el título */
     text-align: center;
+    margin-bottom: 35px;
+    position: relative;
+    padding-bottom: 20px; /* Espacio para el subrayado decorativo */
+}
+
+.article__title::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 100px; /* Ancho del subrayado */
+    height: 4px; /* Grosor del subrayado */
+    background-color: #ffd700; /* Dorado para el subrayado */
+    border-radius: 2px; /* Bordes redondeados para el subrayado */
 }
 
 .article__paragraph {
-    margin-bottom: 1rem;
-    line-height: 1.8;
+    font-size: 1.15em;
+    color: #444; /* Gris oscuro para el texto del párrafo */
+    margin-bottom: 25px;
+    text-align: justify; /* Texto justificado para una apariencia limpia */
 }
 
 .article__image-container {
     text-align: center; /* Centra la imagen */
-    margin: 1.5rem 0;
+    margin: 50px 0;    /* Espacio arriba y abajo de la imagen */
 }
 
 .article__image {
+    max-width: 100%; /* Asegura que la imagen no se desborde */
+    height: auto;    /* Mantiene la proporción */
+    border-radius: 10px; /* Bordes redondeados para la imagen */
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15); /* Sombra sutil para la imagen */
+}
+
+/* --- Media Queries para Article --- */
+@media (max-width: 768px) {
+    .article {
+        margin: 40px 15px; /* Reduce margen en pantallas pequeñas */
+        padding: 30px;     /* Reduce relleno */
+    }
+    .article__title {
+        font-size: 2.2em;
+    }
+    .article__paragraph {
+        font-size: 1.05em;
+    }
+}
+
+
+/* ------------------------------------ */
+/* 5. Bloque: Gallery-Carousel        */
+/* ------------------------------------ */
+
+.gallery-carousel {
+    padding: 60px 0;
+    background-color: #f0f0f0; /* Un blanco roto para esta sección */
+    text-align: center;
+}
+
+.gallery-carousel__title {
+    font-size: 2.6em;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.gallery-carousel__title::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 90px;
+    height: 3px;
+    background-color: #ffd700;
+    border-radius: 2px;
+}
+
+.gallery-carousel__description {
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 40px;
+}
+
+.gallery-carousel__hint {
+    font-size: 0.9em;
+    color: #777;
+    margin-top: 20px;
+    font-style: italic;
+}
+
+.carousel__container {
+    position: relative;
+    max-width: 800px; /* Ancho máximo para el carrusel */
+    margin: 0 auto;
+    overflow: hidden; /* Oculta las imágenes que no están en el slide actual */
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    background-color: #fff;
+}
+
+.carousel__slides {
+    display: flex;
+    transition: transform 0.8s ease-in-out; /* Animación de deslizamiento suave */
+}
+
+.carousel__slide {
+    min-width: 100%; /* Cada slide ocupa el 100% del contenedor visible */
+    transition: opacity 0.5s ease; /* Transición para el fade in/out si se usa */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px; /* Relleno dentro de cada slide */
+}
+
+.carousel__image {
+    width: 100%;
+    max-height: 500px; /* Altura máxima para las imágenes del carrusel */
+    object-fit: contain; /* Asegura que la imagen completa sea visible */
+    border-radius: 10px; /* Bordes redondeados para la imagen */
+    cursor: pointer; /* Indica que la imagen es clicable */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.carousel__caption {
+    margin-top: 15px;
+    font-size: 1.1em;
+    color: #333;
+    font-weight: 500;
+}
+
+.carousel__button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente oscuro */
+    color: #fff;
+    border: none;
+    padding: 15px 18px;
+    cursor: pointer;
+    font-size: 1.5em;
+    border-radius: 50%; /* Botones redondos */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    z-index: 10; /* Asegura que estén por encima de las imágenes */
+}
+
+.carousel__button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    transform: translateY(-50%) scale(1.1); /* Efecto de crecimiento al pasar el ratón */
+}
+
+.carousel__button--prev {
+    left: 10px;
+}
+
+.carousel__button--next {
+    right: 10px;
+}
+
+.carousel__dots {
+    position: absolute;
+    bottom: 20px; /* Posición de los puntos */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
+
+.carousel__dot {
+    width: 12px;
+    height: 12px;
+    background-color: rgba(255, 255, 255, 0.6); /* Color de los puntos inactivos */
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: 2px solid rgba(0,0,0,0.2); /* Borde sutil para los puntos */
+}
+
+.carousel__dot--active {
+    background-color: #ffd700; /* Dorado para el punto activo */
+    border-color: #ffd700;
+}
+
+
+/* ------------------------------------ */
+/* 6. Bloque: Modal (para imágenes ampliadas) */
+/* ------------------------------------ */
+
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed; /* Posición fija en la pantalla */
+    z-index: 2000; /* Por encima de todo lo demás */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Permite scroll si el contenido es muy grande */
+    background-color: rgba(0, 0, 0, 0.9); /* Fondo negro semitransparente oscuro */
+    backdrop-filter: blur(5px); /* Efecto de desenfoque en el fondo */
+    -webkit-backdrop-filter: blur(5px); /* Para compatibilidad con Safari */
+    animation: fadeIn 0.3s ease-out; /* Animación de entrada */
+}
+
+.modal__content {
+    margin: 5% auto; /* Centra el modal verticalmente, con un poco de margen superior */
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 90%;
+    width: auto; /* Ancho automático para adaptarse al contenido */
+    max-height: 90vh; /* Altura máxima para no desbordar la pantalla */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5); /* Sombra más fuerte para el modal */
+    animation: slideIn 0.4s ease-out; /* Animación de entrada desde arriba */
+}
+
+.modal__close {
+    color: #aaa;
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.modal__close:hover,
+.modal__close:focus {
+    color: #ffd700; /* Dorado al pasar el ratón */
+    text-decoration: none;
+}
+
+.modal__image {
     max-width: 100%;
-    height: auto;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    max-height: 70vh; /* Máxima altura de la imagen dentro del modal */
+    display: block;
+    object-fit: contain; /* Asegura que la imagen completa sea visible */
+    border-radius: 8px; /* Bordes redondeados para la imagen del modal */
+    margin-bottom: 20px;
 }
 
-/* ==================================== */
-/* BLOQUE: CONTACT-FORM (o GALLERY) */
-/* ==================================== */
-.contact-form {
-    background-color: var(--white-color);
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    margin-bottom: 2rem;
-}
-
-.contact-form__title {
-    color: var(--primary-color);
-    font-size: 2rem;
+.modal__caption {
+    color: #333;
+    font-size: 1.2em;
     text-align: center;
-    margin-bottom: 1rem;
+    font-weight: 500;
+    padding: 0 20px;
 }
 
-.contact-form__description {
-    text-align: center;
-    color: #666;
-    margin-bottom: 1.5rem;
+/* Animaciones para el modal */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
-/* ==================================== */
-/* BLOQUE: FORM (Usado dentro de contact-form) */
-/* ==================================== */
+@keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* --- Media Queries para Gallery-Carousel y Modal --- */
+@media (max-width: 768px) {
+    .gallery-carousel__title {
+        font-size: 2.2em;
+    }
+    .carousel__container {
+        border-radius: 10px;
+    }
+    .carousel__image {
+        max-height: 350px;
+    }
+    .carousel__button {
+        font-size: 1.2em;
+        padding: 10px 12px;
+    }
+    .carousel__dots {
+        bottom: 10px;
+        gap: 8px;
+    }
+    .carousel__dot {
+        width: 10px;
+        height: 10px;
+    }
+
+    .modal__content {
+        margin: 10% auto;
+        padding: 20px;
+        border-radius: 10px;
+    }
+    .modal__close {
+        font-size: 30px;
+        top: 10px;
+        right: 15px;
+    }
+    .modal__image {
+        max-height: 60vh;
+    }
+    .modal__caption {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-carousel__title {
+        font-size: 1.8em;
+    }
+    .carousel__image {
+        max-height: 250px;
+    }
+    .carousel__button {
+        font-size: 1em;
+        padding: 8px 10px;
+    }
+    .carousel__dots {
+        bottom: 5px;
+        gap: 5px;
+    }
+    .carousel__dot {
+        width: 8px;
+        height: 8px;
+    }
+
+    .modal__content {
+        margin: 15% auto;
+        padding: 15px;
+    }
+}
+
+
+/* ------------------------------------ */
+/* 7. Bloque: Purchase Form           */
+/* ------------------------------------ */
+
+.purchase-form {
+    max-width: 700px; /* Ancho máximo para el formulario */
+    margin: 60px auto; /* Centra el formulario */
+    padding: 50px;     /* Relleno interno */
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    text-align: center; /* Centra el título y descripción */
+}
+
+.purchase-form__title {
+    font-size: 2.6em;
+    color: #1a1a1a;
+    margin-bottom: 15px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.purchase-form__title::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 90px;
+    height: 3px;
+    background-color: #ffd700;
+    border-radius: 2px;
+}
+
+.purchase-form__description {
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 40px;
+}
+
 .form {
     display: flex;
     flex-direction: column;
-    gap: 1rem; /* Espacio entre grupos de formulario */
-    max-width: 500px;
-    margin: 0 auto;
+    gap: 25px; /* Espacio entre grupos de formulario */
+    text-align: left; /* Alinea los elementos del formulario a la izquierda */
 }
 
 .form__group {
-    display: flex;
-    flex-direction: column;
+    margin-bottom: 15px; /* Espacio entre cada grupo de label/input */
 }
 
 .form__label {
-    margin-bottom: 0.5rem;
-    font-weight: bold;
-    color: var(--dark-color);
+    display: block; /* Cada label en su propia línea */
+    margin-bottom: 8px;
+    font-weight: 700;
+    color: #333;
+    font-size: 0.95em;
 }
 
 .form__input,
 .form__textarea {
-    padding: 0.8rem;
+    width: 100%;
+    padding: 15px;
     border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 1rem;
-    width: 100%; /* Ocupa el 100% del form__group */
-    box-sizing: border-box; /* Incluye padding y border en el ancho */
-}
-
-.form__textarea {
-    resize: vertical; /* Permite redimensionar verticalmente */
+    border-radius: 8px; /* Bordes redondeados para inputs */
+    font-size: 1em;
+    color: #333;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .form__input:focus,
 .form__textarea:focus {
-    border-color: var(--primary-color);
-    outline: none;
-    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+    border-color: #ffd700; /* Borde dorado al enfocar */
+    box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2); /* Sombra suave dorada al enfocar */
+    outline: none; /* Quita el contorno por defecto del navegador */
+}
+
+.form__textarea {
+    resize: vertical; /* Permite redimensionar verticalmente */
+    min-height: 100px; /* Altura mínima */
+}
+
+.form__group--checkbox {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.form__checkbox {
+    margin-right: 10px;
+    /* Estilos básicos para el checkbox, puedes usar librerías para personalizar más */
+    width: 18px;
+    height: 18px;
+    accent-color: #ffd700; /* Color de acento para el checkbox */
+}
+
+.form__label--inline {
+    margin-bottom: 0; /* Elimina margen inferior para labels en línea */
 }
 
 .form__button {
-    background-color: var(--primary-color);
-    color: var(--white-color);
-    padding: 1rem 1.5rem;
+    background-color: #1a1a1a; /* Botón de fondo negro */
+    color: #fff;               /* Texto blanco */
+    padding: 18px 40px;
     border: none;
-    border-radius: 4px;
-    font-size: 1.1rem;
+    border-radius: 10px;
+    font-size: 1.2em;
+    font-weight: 700;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    align-self: flex-start; /* Alinea el botón a la izquierda */
-    margin-top: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    align-self: center; /* Centra el botón en el flex container */
+    margin-top: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
 .form__button:hover {
-    background-color: #2980b9; /* Tono más oscuro de primary-color */
+    background-color: #333; /* Un gris más claro al pasar el ratón */
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+}
+
+/* --- Media Queries para Purchase Form --- */
+@media (max-width: 768px) {
+    .purchase-form {
+        margin: 40px 15px;
+        padding: 30px;
+    }
+    .purchase-form__title {
+        font-size: 2.2em;
+    }
+    .form__button {
+        padding: 15px 30px;
+        font-size: 1.1em;
+    }
 }
 
 
-/* ==================================== */
-/* BLOQUE: GALLERY (Si lo usas en lugar de CONTACT-FORM) */
-/* ==================================== */
-/*
-.gallery {
-    background-color: var(--white-color);
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    margin-bottom: 2rem;
-}
+/* ------------------------------------ */
+/* 8. Bloque: Footer                  */
+/* ------------------------------------ */
 
-.gallery__title {
-    color: var(--primary-color);
-    font-size: 2rem;
-    text-align: center;
-    margin-bottom: 1.5rem;
-}
-
-.gallery__grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-}
-
-.gallery__item {
-    border: 1px solid #eee;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    transition: transform 0.2s ease;
-}
-
-.gallery__item:hover {
-    transform: translateY(-5px);
-}
-
-.gallery__image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    display: block;
-}
-
-.gallery__caption {
-    padding: 1rem;
-    text-align: center;
-    font-size: 0.9rem;
-    color: #555;
-    background-color: #f9f9f9;
-}
-*/
-
-/* ==================================== */
-/* BLOQUE: FOOTER */
-/* ==================================== */
 .footer {
-    background-color: var(--dark-color);
-    color: var(--white-color);
-    padding: 2rem 0;
+    background-color: #1a1a1a; /* Fondo oscuro, similar al header */
+    color: #f8f8f8;             /* Texto casi blanco */
+    padding: 50px 0 20px 0;     /* Relleno superior, inferior menor para el copyright */
     text-align: center;
+    border-top: 5px solid #ffd700; /* Línea dorada en la parte superior del footer */
 }
 
 .footer__content {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: flex-start; /* Alinea los ítems al inicio */
-    gap: 2rem; /* Espacio entre columnas del footer */
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    margin-bottom: 1.5rem;
+    justify-content: space-around; /* Distribuye el espacio entre columnas */
+    flex-wrap: wrap;             /* Permite que las columnas se envuelvan */
+    max-width: 1000px;
+    margin: 0 auto 30px auto;   /* Centra y añade margen inferior */
+    padding: 0 20px;
+    gap: 30px; /* Espacio entre columnas */
 }
 
 .footer__contact,
 .footer__social {
-    flex: 1; /* Permite que crezcan y se encojan */
-    min-width: 200px; /* Ancho mínimo para que no se aprieten demasiado */
+    flex: 1; /* Permite que las columnas se expandan */
+    min-width: 280px; /* Ancho mínimo para cada columna */
     text-align: left;
 }
 
 .footer__heading {
-    color: var(--primary-color);
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
+    font-size: 1.5em;
+    color: #ffd700; /* Título dorado */
+    margin-bottom: 20px;
+    font-weight: 700;
 }
 
 .footer__text {
-    margin-bottom: 0.5rem;
-    font-size: 0.9rem;
-    color: var(--light-color);
+    font-size: 1em;
+    margin-bottom: 10px;
+    line-height: 1.5;
+    color: #ccc; /* Gris claro para el texto de contacto */
 }
 
-/* ==================================== */
-/* BLOQUE: SOCIAL (Usado dentro de footer) */
-/* ==================================== */
+.footer__text .fas,
+.footer__text .far,
+.footer__text .fab {
+    margin-right: 10px; /* Espacio entre icono y texto */
+    color: #ffd700;     /* Iconos dorados */
+}
+
 .social__list {
     list-style: none;
-    padding: 0;
-    margin: 0;
     display: flex;
-    gap: 1rem;
-    justify-content: flex-start; /* Alinea los iconos sociales a la izquierda */
+    gap: 20px; /* Espacio entre iconos sociales */
+    margin-top: 15px;
 }
 
 .social__item {
-    /* Estilos para cada ítem de red social */
+    /* No se necesitan estilos directos aquí */
 }
 
 .social__link {
-    color: var(--white-color);
-    text-decoration: none;
-    font-size: 1.5rem;
-    transition: color 0.3s ease, transform 0.3s ease;
-    display: inline-block; /* Para aplicar transformaciones */
+    display: inline-block;
+    color: #fff;
+    font-size: 1.8em; /* Tamaño de los iconos sociales */
+    transition: color 0.3s ease, transform 0.2s ease;
 }
 
 .social__link:hover {
-    color: var(--primary-color);
-    transform: translateY(-3px); /* Pequeño efecto al pasar el ratón */
+    color: #ffd700; /* Dorado al pasar el ratón */
+    transform: translateY(-3px); /* Efecto de elevación */
 }
-
-/* Modificadores para iconos específicos (ej. si usas Font Awesome o iconos SVG) */
-.social__link--facebook:hover {
-    color: #3b5998; /* Color de Facebook */
-}
-.social__link--twitter:hover {
-    color: #00acee; /* Color de Twitter */
-}
-.social__link--instagram:hover {
-    color: #C13584; /* Color de Instagram */
-}
-
 
 .footer__copyright {
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.7);
-    margin-top: 1.5rem;
+    font-size: 0.9em;
+    color: #999; /* Gris más oscuro para el copyright */
+    margin-top: 30px;
+    text-align: center;
 }
 
-
-/* ==================================== */
-/* RESPONSIVIDAD BÁSICA (Media Queries) */
-/* ==================================== */
-
-@media (min-width: 768px) {
-    /* HEADER */
-    .header {
-        flex-direction: row; /* En pantallas más grandes, logo y nav en fila */
-        justify-content: space-between;
-        padding: 1rem 30px; /* Ajusta el padding horizontal */
-    }
-
-    .header__logo-container {
-        margin-bottom: 0;
-    }
-
-    .header__nav {
-        width: auto; /* La navegación no ocupa todo el ancho */
-    }
-
-    .nav__list {
-        justify-content: flex-end; /* Alinea los ítems a la derecha en el nav */
-    }
-
-    /* FOOTER */
-    .footer__content {
-        justify-content: space-between; /* Distribuye el espacio entre las columnas */
-        padding: 0 30px 1.5rem; /* Ajusta el padding horizontal */
-    }
-
-    .footer__contact,
-    .footer__social {
-        flex: none; /* Desactiva el flex-grow para control de ancho */
-        width: 30%; /* O un ancho fijo si prefieres */
-        text-align: left;
-    }
-    
-    .social__list {
-        justify-content: flex-start;
-    }
-}
-
-@media (max-width: 576px) {
-    /* ARTICLE */
-    .article {
-        padding: 1.5rem;
-    }
-
-    .article__title {
-        font-size: 1.8rem;
-    }
-
-    /* FORMULARIO */
-    .contact-form, .gallery {
-        padding: 1.5rem;
-    }
-
-    .form__button {
-        width: 100%; /* El botón ocupa todo el ancho */
-        align-self: center; /* Centra el botón */
-    }
-
-    /* FOOTER */
+/* --- Media Queries para Footer --- */
+@media (max-width: 768px) {
     .footer__content {
         flex-direction: column; /* Apila las columnas del footer */
-        align-items: center;
-        text-align: center;
-        padding: 0 15px 1.5rem;
+        align-items: center;    /* Centra el contenido */
+        gap: 40px;
     }
-
     .footer__contact,
     .footer__social {
-        width: 100%;
-        text-align: center;
-        margin-bottom: 1rem;
+        min-width: unset; /* Elimina el ancho mínimo para que se adapten mejor */
+        width: 100%;      /* Ocupa todo el ancho */
+        text-align: center; /* Centra el texto */
     }
-
     .social__list {
         justify-content: center; /* Centra los iconos sociales */
     }
-
-    .footer__copyright {
-        margin-top: 0.5rem;
+    .footer__heading {
+        margin-bottom: 15px;
     }
 }

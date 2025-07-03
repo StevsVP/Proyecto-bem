@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería de Arte Stevs - Obra "Reflejos del Alma"</title>
+    <link rel="stylesheet" href="assets/css/styles.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon"> 
+</head>
+<body>
+
+    <header class="header">
+        <div class="header__logo-container">
+            <a href="index.html" class="branding__link">
+                <img src="assets/img/logo-galeria.png" alt="Logo Galería de Arte Stevs" class="header__logo">
+            </a>
+        </div>
+        <nav class="header__nav">
+            <ul class="nav__list">
+                <li class="nav__item nav__item--current"><a href="#hero" class="nav__link">La Obra</a></li>
+                <li class="nav__item"><a href="#galeria" class="nav__link">Galería Dinámica</a></li>
+                <li class="nav__item"><a href="#comprar" class="nav__link">Comprar Obra</a></li>
+                <li class="nav__item"><a href="#contacto" class="nav__link">Contacto Galería</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <section id="hero" class="hero-obra">
+            <div class="hero-obra__overlay"></div>
+            <img src="assets/img/obra-xx-principal.jpg" alt="Obra de Arte XX de Stevs" class="hero-obra__image">
+            <div class="hero-obra__content">
+                <h1 class="hero-obra__title">Descubre "Reflejos del Alma"</h1>
+                <p class="hero-obra__artist">La nueva obra maestra de Stevs</p>
+                <a href="#comprar" class="hero-obra__button">Adquirir Obra</a>
+            </div>
+        </section>
+
+        <article class="article">
+            <h2 class="article__title">La Profundidad de "Reflejos del Alma" (Obra XX)</h2>
+            <p class="article__paragraph">
+                "Reflejos del Alma" es la más reciente creación del aclamado artista Stevs, una pieza que desafía las percepciones tradicionales y sumerge al espectador en un viaje introspectivo. Con una paleta de colores vibrantes y formas etéreas, esta obra maestra captura la esencia de la conexión humana con el universo.
+            </p>
+            <p class="article__paragraph">
+                Cada trazo y cada pincelada de "Reflejos del Alma" narra una historia de contemplación y descubrimiento. Stevs ha empleado técnicas mixtas para dar vida a una textura rica que invita a la observación detallada, revelando nuevas dimensiones con cada mirada. Es un testimonio del poder del arte para evocar emociones profundas y provocar el pensamiento.
+            </p>
+            <div class="article__image-container">
+                <img src="assets/img/obra-xx-detalle.jpg" alt="Detalle de la Obra XX" class="article__image">
+            </div>
+            <p class="article__paragraph">
+                La presentación de "Reflejos del Alma" marca un hito en la trayectoria de Stevs, consolidando su reputación como un innovador en el arte contemporáneo. Esta pieza no solo es una adquisición valiosa para cualquier colección, sino una ventana a la visión única de un artista en la cúspide de su creatividad.
+            </p>
+            <p class="article__paragraph">
+                Te invitamos a explorar sus matices y a dejarte envolver por la experiencia que ofrece "Reflejos del Alma". Una obra que, sin duda, resonará contigo mucho después de haberla admirado.
+            </p>
+        </article>
+
+        <section id="galeria" class="gallery-carousel">
+            <h2 class="gallery-carousel__title">Explora "Reflejos del Alma" en Detalle</h2>
+            <p class="gallery-carousel__description">Vistas exclusivas de la obra maestra de Stevs.</p>
+            
+            <div class="carousel__container">
+                <div class="carousel__slides">
+                    <div class="carousel__slide">
+                        <img src="assets/img/obra-xx-angulo1.jpg" alt="Obra XX - Ángulo frontal" class="carousel__image">
+                        <p class="carousel__caption">Vista Frontal Completa</p>
+                    </div>
+                    <div class="carousel__slide">
+                        <img src="assets/img/obra-xx-angulo2.jpg" alt="Obra XX - Detalle de textura" class="carousel__image">
+                        <p class="carousel__caption">Textura y Pinceladas</p>
+                    </div>
+                    <div class="carousel__slide">
+                        <img src="assets/img/obra-xx-angulo3.jpg" alt="Obra XX - Perspectiva lateral" class="carousel__image">
+                        <p class="carousel__caption">Perspectiva Lateral</p>
+                    </div>
+                     <div class="carousel__slide">
+                        <img src="assets/img/obra-xx-angulo4.jpg" alt="Obra XX - Detalle de color" class="carousel__image">
+                        <p class="carousel__caption">Profundidad del Color</p>
+                    </div>
+                    <div class="carousel__slide">
+                        <img src="assets/img/obra-xx-angulo5.jpg" alt="Obra XX - Detalle superior" class="carousel__image">
+                        <p class="carousel__caption">Vista Superior Detallada</p>
+                    </div>
+                </div>
+                <button class="carousel__button carousel__button--prev" aria-label="Anterior">&#10094;</button>
+                <button class="carousel__button carousel__button--next" aria-label="Siguiente">&#10095;</button>
+                
+                <div class="carousel__dots">
+                    </div>
+            </div>
+            <p class="gallery-carousel__hint">Haz clic en una imagen para ampliarla.</p>
+        </section>
+        <section id="comprar" class="purchase-form">
+            <h2 class="purchase-form__title">Adquiere "Reflejos del Alma"</h2>
+            <p class="purchase-form__description">Completa el formulario y nos pondremos en contacto para finalizar tu adquisición.</p>
+            <form class="form">
+                <div class="form__group">
+                    <label for="full-name" class="form__label">Nombre Completo:</label>
+                    <input type="text" id="full-name" name="full_name" class="form__input" placeholder="Tu nombre y apellido" required>
+                </div>
+                <div class="form__group">
+                    <label for="email-purchase" class="form__label">Correo Electrónico:</label>
+                    <input type="email" id="email-purchase" name="email_purchase" class="form__input" placeholder="tu@correo.com" required>
+                </div>
+                <div class="form__group">
+                    <label for="phone-purchase" class="form__label">Número de Teléfono:</label>
+                    <input type="tel" id="phone-purchase" name="phone_purchase" class="form__input" placeholder="+56 9 1234 5678">
+                </div>
+                <div class="form__group">
+                    <label for="message-purchase" class="form__label">Mensaje Adicional (opcional):</label>
+                    <textarea id="message-purchase" name="message_purchase" class="form__textarea" placeholder="¿Alguna pregunta o requerimiento especial?" rows="4"></textarea>
+                </div>
+                <div class="form__group form__group--checkbox">
+                    <input type="checkbox" id="newsletter" name="newsletter" class="form__checkbox">
+                    <label for="newsletter" class="form__label form__label--inline">Deseo recibir noticias sobre futuras obras de Stevs.</label>
+                </div>
+                <button type="submit" class="form__button">Confirmar Interés en la Obra</button>
+            </form>
+        </section>
+
+    </main>
+
+    <footer class="footer" id="contacto">
+        <div class="footer__content">
+            <div class="footer__contact">
+                <h4 class="footer__heading">Contacto Galería Stevs</h4>
+                <p class="footer__text"><i class="fas fa-map-marker-alt"></i> Calle del Arte 123, Santiago, Chile</p>
+                <p class="footer__text"><i class="fas fa-phone"></i> +56 9 1234 5678</p>
+                <p class="footer__text"><i class="fas fa-envelope"></i> info@galeriastevs.com</p>
+                <p class="footer__text"><i class="fas fa-clock"></i> Lunes a Viernes: 10:00 - 18:00</p>
+            </div>
+            <div class="footer__social">
+                <h4 class="footer__heading">Síguenos</h4>
+                <ul class="social__list">
+                    <li class="social__item"><a href="#" class="social__link social__link--facebook" aria-label="Facebook de la Galería"><i class="fab fa-facebook-f"></i></a></li>
+                    <li class="social__item"><a href="#" class="social__link social__link--instagram" aria-label="Instagram de la Galería"><i class="fab fa-instagram"></i></a></li>
+                    <li class="social__item"><a href="#" class="social__link social__link--twitter" aria-label="Twitter de la Galería"><i class="fab fa-twitter"></i></a></li>
+                </ul>
+            </div>
+        </div>
+        <p class="footer__copyright">&copy; 2025 Galería de Arte Stevs. Todos los derechos reservados.</p>
+    </footer>
+
+    <div id="imageModal" class="modal">
+        <div class="modal__content">
+            <span class="modal__close">&times;</span>
+            <img src="" alt="Imagen ampliada" class="modal__image" id="modalImage">
+            <p class="modal__caption" id="modalCaption"></p>
+        </div>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
