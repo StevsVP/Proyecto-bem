@@ -16,93 +16,93 @@ document.addEventListener('DOMContentLoaded', () => {
     // Asegurarse de que los elementos del carrusel existen antes de inicializarlo
     if (!carouselSlides || carouselImages.length === 0 || !dotsContainer) {
         console.warn('Elementos del carrusel no encontrados. La funcionalidad del carrusel no se inicializará.');
-        return; // Salir si no se pueden encontrar los elementos esenciales del carrusel
-    }
+        // No 'return' aquí si queremos que el resto del script (modales, etc.) siga funcionando
+    } else { // Solo inicializar el carrusel si todos los elementos están presentes
+        // Función para mostrar el slide actual
+        const showSlide = (index) => {
+            // Lógica para el loop infinito del carrusel
+            if (index >= carouselImages.length) {
+                currentIndex = 0; // Vuelve al primer slide si se pasa del último
+            } else if (index < 0) {
+                currentIndex = carouselImages.length - 1; // Va al último slide si se retrocede del primero
+            } else {
+                currentIndex = index; // Muestra el slide solicitado
+            }
 
-    // Función para mostrar el slide actual
-    const showSlide = (index) => {
-        // Lógica para el loop infinito del carrusel
-        if (index >= carouselImages.length) {
-            currentIndex = 0; // Vuelve al primer slide si se pasa del último
-        } else if (index < 0) {
-            currentIndex = carouselImages.length - 1; // Va al último slide si se retrocede del primero
-        } else {
-            currentIndex = index; // Muestra el slide solicitado
+            // Aplica la transformación para deslizar los slides
+            carouselSlides.style.transform = `translateX(${-currentIndex * 100}%)`;
+            updateDots(); // Actualiza los puntos de navegación para reflejar el slide actual
+        };
+
+        // Función para avanzar al siguiente slide
+        const nextSlide = () => {
+            showSlide(currentIndex + 1);
+        };
+
+        // Función para retroceder al slide anterior
+        const prevSlide = () => {
+            showSlide(currentIndex - 1);
+        };
+
+        // Iniciar el carrusel automático
+        const startAutoSlide = () => {
+            clearInterval(slideInterval); // Limpia cualquier intervalo existente para evitar duplicados
+            slideInterval = setInterval(nextSlide, intervalTime); // Configura un nuevo intervalo
+        };
+
+        // Detener el carrusel automático al pasar el ratón por encima
+        carouselSlides.addEventListener('mouseenter', () => clearInterval(slideInterval));
+        // Reanudar el carrusel automático cuando el ratón sale
+        carouselSlides.addEventListener('mouseleave', startAutoSlide);
+
+        // Event listeners para los botones de navegación (si existen)
+        if (nextButton) {
+            nextButton.addEventListener('click', () => {
+                nextSlide();
+                startAutoSlide(); // Reinicia el temporizador de auto-avance al navegar manualmente
+            });
+        }
+        if (prevButton) {
+            prevButton.addEventListener('click', () => {
+                prevSlide();
+                startAutoSlide(); // Reinicia el temporizador de auto-avance al navegar manualmente
+            });
         }
 
-        // Aplica la transformación para deslizar los slides
-        carouselSlides.style.transform = `translateX(${-currentIndex * 100}%)`;
-        updateDots(); // Actualiza los puntos de navegación para reflejar el slide actual
-    };
-
-    // Función para avanzar al siguiente slide
-    const nextSlide = () => {
-        showSlide(currentIndex + 1);
-    };
-
-    // Función para retroceder al slide anterior
-    const prevSlide = () => {
-        showSlide(currentIndex - 1);
-    };
-
-    // Iniciar el carrusel automático
-    const startAutoSlide = () => {
-        clearInterval(slideInterval); // Limpia cualquier intervalo existente para evitar duplicados
-        slideInterval = setInterval(nextSlide, intervalTime); // Configura un nuevo intervalo
-    };
-
-    // Detener el carrusel automático al pasar el ratón por encima
-    carouselSlides.addEventListener('mouseenter', () => clearInterval(slideInterval));
-    // Reanudar el carrusel automático cuando el ratón sale
-    carouselSlides.addEventListener('mouseleave', startAutoSlide);
-
-    // Event listeners para los botones de navegación (si existen)
-    if (nextButton) {
-        nextButton.addEventListener('click', () => {
-            nextSlide();
-            startAutoSlide(); // Reinicia el temporizador de auto-avance al navegar manualmente
-        });
-    }
-    if (prevButton) {
-        prevButton.addEventListener('click', () => {
-            prevSlide();
-            startAutoSlide(); // Reinicia el temporizador de auto-avance al navegar manualmente
-        });
-    }
-
-    // Crear puntos de navegación dinámicamente
-    const createDots = () => {
-        dotsContainer.innerHTML = ''; // Limpiar cualquier punto existente para evitar duplicados
-        carouselImages.forEach((_, index) => {
-            const dot = document.createElement('span');
-            dot.classList.add('carousel__dot'); // Añade la clase CSS para el estilo del punto
-            if (index === 0) {
-                dot.classList.add('carousel__dot--active'); // El primer punto está activo por defecto
-            }
-            dot.addEventListener('click', () => {
-                showSlide(index); // Navega al slide correspondiente al hacer clic en el punto
-                startAutoSlide(); // Reinicia el temporizador de auto-avance
+        // Crear puntos de navegación dinámicamente
+        const createDots = () => {
+            dotsContainer.innerHTML = ''; // Limpiar cualquier punto existente para evitar duplicados
+            carouselImages.forEach((_, index) => {
+                const dot = document.createElement('span');
+                dot.classList.add('carousel__dot'); // Añade la clase CSS para el estilo del punto
+                if (index === 0) {
+                    dot.classList.add('carousel__dot--active'); // El primer punto está activo por defecto
+                }
+                dot.addEventListener('click', () => {
+                    showSlide(index); // Navega al slide correspondiente al hacer clic en el punto
+                    startAutoSlide(); // Reinicia el temporizador de auto-avance
+                });
+                dotsContainer.appendChild(dot); // Añade el punto al contenedor de puntos
             });
-            dotsContainer.appendChild(dot); // Añade el punto al contenedor de puntos
-        });
-    };
+        };
 
-    // Actualizar el estado visual de los puntos de navegación
-    const updateDots = () => {
-        document.querySelectorAll('.carousel__dot').forEach((dot, index) => {
-            if (index === currentIndex) {
-                dot.classList.add('carousel__dot--active'); // Marca el punto del slide actual como activo
-            } else {
-                dot.classList.remove('carousel__dot--active'); // Desactiva los demás puntos
-            }
-        });
-    };
+        // Actualizar el estado visual de los puntos de navegación
+        const updateDots = () => {
+            document.querySelectorAll('.carousel__dot').forEach((dot, index) => {
+                if (index === currentIndex) {
+                    dot.classList.add('carousel__dot--active'); // Marca el punto del slide actual como activo
+                } else {
+                    dot.classList.remove('carousel__dot--active'); // Desactiva los demás puntos
+                }
+            });
+        };
 
-    // Inicializar carrusel si hay imágenes
-    if (carouselImages.length > 0) {
-        createDots(); // Crea los puntos de navegación
-        showSlide(0); // Muestra la primera imagen al cargar la página
-        startAutoSlide(); // Inicia la rotación automática
+        // Inicializar carrusel si hay imágenes
+        if (carouselImages.length > 0) {
+            createDots(); // Crea los puntos de navegación
+            showSlide(0); // Muestra la primera imagen al cargar la página
+            startAutoSlide(); // Inicia la rotación automática
+        }
     }
 
 
@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const imageModal = document.getElementById('imageModal');
     const modalImage = document.getElementById('modalImage');
     const modalCaption = document.getElementById('modalCaption');
-    const closeModalBtn = document.querySelector('.modal__close');
+    const closeModalBtn = document.querySelector('.modal__close'); // Asegúrate de que este es el botón de cerrar del modal de IMAGEN
     const allGalleryImages = document.querySelectorAll('.carousel__image'); // Selecciona todas las imágenes del carrusel
 
     // Abrir el modal al hacer clic en una imagen de la galería
@@ -135,7 +135,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Cerrar el modal al hacer clic en la 'x'
-    if (closeModalBtn) {
+    // Asegúrate de que closeModalBtn es el que corresponde al modal de imagen.
+    // Si usas un solo 'modal__close' para ambos, podría cerrarlos indistintamente.
+    // Para mayor claridad, podrías darles IDs distintos en HTML (e.g., 'closeImageModalBtn')
+    // o usar una selección más específica como 'imageModal .modal__close'.
+    if (closeModalBtn) { // Este es el del modal de imagen
         closeModalBtn.addEventListener('click', () => {
             imageModal.style.display = 'none';
         });
@@ -152,9 +156,51 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Cerrar el modal al presionar la tecla 'Escape'
     document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && imageModal.style.display === 'block') {
-            imageModal.style.display = 'none';
+        // Asegúrate de que solo uno de los modales se cierre con Escape si ambos están abiertos.
+        // Aquí priorizamos el imageModal si está abierto.
+        if (event.key === 'Escape') {
+            if (imageModal && imageModal.style.display === 'block') {
+                imageModal.style.display = 'none';
+            } else if (confirmationModal && confirmationModal.style.display === 'block') {
+                confirmationModal.style.display = 'none';
+            }
         }
     });
+
+    // --- Funcionalidad del Formulario de Compra y Modal de Confirmación ---
+    // ¡CORRECCIÓN CRÍTICA AQUÍ! Selecciona el formulario por su ID.
+    const purchaseForm = document.getElementById('purchaseForm'); 
+    const confirmationModal = document.getElementById('confirmationModal');
+    const closeConfirmationModalBtn = document.getElementById('closeConfirmationModal');
+
+    if (purchaseForm) {
+        purchaseForm.addEventListener('submit', (event) => {
+            event.preventDefault(); // Previene el envío del formulario y la recarga de la página
+
+            // Aquí podrías añadir lógica para enviar los datos a un servidor si tuvieras un backend
+            // Por ahora, simplemente mostramos el modal de confirmación
+
+            confirmationModal.style.display = 'block'; // Muestra el modal de confirmación
+
+            // Opcional: Limpiar el formulario después del "envío"
+            purchaseForm.reset();
+        });
+    }
+
+    // Cerrar el modal de confirmación al hacer clic en la 'x'
+    if (closeConfirmationModalBtn) {
+        closeConfirmationModalBtn.addEventListener('click', () => {
+            confirmationModal.style.display = 'none';
+        });
+    }
+
+    // Cerrar el modal de confirmación al hacer clic fuera del contenido (en el fondo)
+    if (confirmationModal) {
+        confirmationModal.addEventListener('click', (event) => {
+            if (event.target === confirmationModal) {
+                confirmationModal.style.display = 'none';
+            }
+        });
+    }
 
 });
