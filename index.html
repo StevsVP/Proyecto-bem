@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto BEM</title>
+    <link rel="stylesheet" href="../css/styles.css"> </head>
+<body>
+
+    <header class="header">
+        <div class="header__logo-container">
+            <img src="assets/img/logo.png" alt="Logo de la página" class="header__logo">
+        </div>
+        <nav class="header__nav">
+            <ul class="nav__list">
+                <li class="nav__item"><a href="#" class="nav__link">Inicio</a></li>
+                <li class="nav__item"><a href="#" class="nav__link">Acerca de</a></li>
+                <li class="nav__item"><a href="#" class="nav__link">Servicios</a></li>
+                <li class="nav__item"><a href="#" class="nav__link">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <article class="article">
+            <h1 class="article__title">Título de Nuestro Fascinante Artículo</h1>
+            <p class="article__paragraph">Este es el primer párrafo de nuestro artículo. Aquí desarrollamos una idea principal o introducimos un tema relevante para el lector. La clave es mantenerlo conciso y atractivo.</p>
+            <p class="article__paragraph">Continuamos con un segundo párrafo, donde podríamos expandir la idea anterior o introducir un nuevo punto que soporte el argumento principal del artículo. La lectura fluida es esencial.</p>
+            <div class="article__image-container">
+                <img src="assets/img/article-image.jpg" alt="Imagen relevante para el artículo" class="article__image">
+            </div>
+            <p class="article__paragraph">Finalmente, un tercer párrafo que podría servir como conclusión o para resumir los puntos clave, dejando al lector con una reflexión o una llamada a la acción.</p>
+        </article>
+
+        <section class="contact-form">
+            <h2 class="contact-form__title">Contáctanos</h2>
+            <p class="contact-form__description">Envíanos un mensaje y te responderemos a la brevedad.</p>
+            <form class="form">
+                <div class="form__group">
+                    <label for="name" class="form__label">Nombre:</label>
+                    <input type="text" id="name" name="user_name" class="form__input" placeholder="Tu nombre" required>
+                </div>
+                <div class="form__group">
+                    <label for="email" class="form__label">Email:</label>
+                    <input type="email" id="email" name="user_email" class="form__input" placeholder="tu@correo.com" required>
+                </div>
+                <div class="form__group">
+                    <label for="message" class="form__label">Mensaje:</label>
+                    <textarea id="message" name="user_message" class="form__textarea" placeholder="Escribe tu mensaje aquí..." rows="5" required></textarea>
+                </div>
+                <button type="submit" class="form__button">Enviar Mensaje</button>
+            </form>
+        </section>
+
+        </main>
+
+    <footer class="footer">
+        <div class="footer__content">
+            <div class="footer__contact">
+                <h4 class="footer__heading">Contacto</h4>
+                <p class="footer__text">Email: info@ejemplo.com</p>
+                <p class="footer__text">Teléfono: +123 456 7890</p>
+                <p class="footer__text">Dirección: Calle Falsa 123, Ciudad</p>
+            </div>
+            <div class="footer__social">
+                <h4 class="footer__heading">Síguenos</h4>
+                <ul class="social__list">
+                    <li class="social__item"><a href="#" class="social__link social__link--facebook">Facebook</a></li>
+                    <li class="social__item"><a href="#" class="social__link social__link--twitter">Twitter</a></li>
+                    <li class="social__item"><a href="#" class="social__link social__link--instagram">Instagram</a></li>
+                </ul>
+            </div>
+        </div>
+        <p class="footer__copyright">&copy; 2025 Mi Proyecto BEM. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>
